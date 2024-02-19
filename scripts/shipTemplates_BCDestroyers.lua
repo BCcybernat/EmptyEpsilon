@@ -330,35 +330,60 @@ variation:setBeamWeaponTurret( 3, 360, 0, 1)
 variation:setBeamWeaponTurret( 4, 360, 0, 1)
 
 
-variation:addRoomSystem(1, 0, 2, 1, "Maneuver");
-variation:addRoomSystem(1, 1, 2, 1, "BeamWeapons");
-variation:addRoom(2, 2, 2, 1);
-
-variation:addRoomSystem(0, 3, 1, 2, "RearShield");
-variation:addRoomSystem(1, 3, 2, 2, "Reactor");
-variation:addRoomSystem(3, 3, 2, 2, "Warp");
-variation:addRoomSystem(5, 3, 1, 2, "JumpDrive");
-variation:addRoom(6, 3, 2, 1);
-variation:addRoom(6, 4, 2, 1);
-variation:addRoomSystem(8, 3, 1, 2, "FrontShield");
-
-variation:addRoom(2, 5, 2, 1);
-variation:addRoomSystem(1, 6, 2, 1, "MissileSystem");
-variation:addRoomSystem(1, 7, 2, 1, "Impulse");
-
-variation:addDoor(1, 1, true);
-variation:addDoor(2, 2, true);
-variation:addDoor(3, 3, true);
-variation:addDoor(1, 3, false);
-variation:addDoor(3, 4, false);
-variation:addDoor(3, 5, true);
-variation:addDoor(2, 6, true);
-variation:addDoor(1, 7, true);
-variation:addDoor(5, 3, false);
-variation:addDoor(6, 3, false);
-variation:addDoor(6, 4, false);
-variation:addDoor(8, 3, false);
-variation:addDoor(8, 4, false);
+--bridge
+variation:addRoomTitle(0,1,3,4, "Bridge");
+--bridge interactable 1
+variation:addRoomSystem(0,2,1,1, "FrontShield");
+--bridge interactable 2
+variation:addRoomSystem(0,3,1,1, "Maneuver");
+--bridge rear
+variation:addRoomTitle(3,0,2,6, "Bridge");
+--mid-bridge door
+variation:addDoor(3,3,false);
+--door to bridge
+variation:addDoor(5,2,false);
+--2nd bridge door
+variation:addDoor(5,3,false);
+--toilet
+variation:addRoomTitle(5,0,4,2, "Toilet");
+--toilet interactable
+variation:addRoomSystem(8,1,1,1, "MissileSystem");
+--door to toilet
+variation:addDoor(6,2,true);
+--corridor
+variation:addRoomTitle(5,2,4,2, "Gangway");
+--corridor interactable
+variation:addRoomSystem(8,3,1,1, "Impulse");
+--medibay
+variation:addRoomTitle(5,4,4,2, "Medibay");
+--medibay door
+variation:addDoor(6,4,true);
+--medibay interactable 1
+variation:addRoomSystem(5,5,1,1, "Beamweapons");
+--cargo bay
+variation:addRoomTitle(9,0,4,6, "Cargo Bay");
+--cargo bay interactable
+variation:addRoomSystem(11,0,1,1, "Reactor");
+--cargo bay door
+variation:addDoor(9,2,false);
+--cargo bay door
+variation:addDoor(9,3,false);
+--corridor
+variation:addRoomTitle(13,2,4,3, "Gangway");
+--corridor interactable 1
+variation:addRoomSystem(14,2,1,1, "RearShield");
+--corridor door
+variation:addDoor(13,3,false);
+--shuttle
+variation:addRoomTitle(14,0,5,2, "Shuttle");
+--shuttle door
+variation:addDoor(17,3,false);
+--airlock
+variation:addRoomTitle(17,2,2,3, "Airlock");
+--airlock interactable
+variation:addRoomSystem(18,4,1,1, "Warp");
+--airlock door
+variation:addDoor(17,2,true);
  
 --Airlock doors
 --variation:addDoor(2, 2, false);

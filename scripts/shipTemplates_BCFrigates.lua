@@ -419,35 +419,46 @@ variation:setBeamWeaponTurret(2, 360, 0, 2)
 variation:setBeamWeaponTurret(3, 360, 0, 2)
 
 
-variation:addRoomSystem(1, 0, 2, 1, "Maneuver");
-variation:addRoomSystem(1, 1, 2, 1, "BeamWeapons");
-variation:addRoom(2, 2, 2, 1);
-
-variation:addRoomSystem(0, 3, 1, 2, "RearShield");
-variation:addRoomSystem(1, 3, 2, 2, "Reactor");
-variation:addRoomSystem(3, 3, 2, 2, "Warp");
-variation:addRoomSystem(5, 3, 1, 2, "JumpDrive");
-variation:addRoom(6, 3, 2, 1);
-variation:addRoom(6, 4, 2, 1);
-variation:addRoomSystem(8, 3, 1, 2, "FrontShield");
-
-variation:addRoom(2, 5, 2, 1);
-variation:addRoomSystem(1, 6, 2, 1, "MissileSystem");
-variation:addRoomSystem(1, 7, 2, 1, "Impulse");
-
-variation:addDoor(1, 1, true);
-variation:addDoor(2, 2, true);
-variation:addDoor(3, 3, true);
-variation:addDoor(1, 3, false);
-variation:addDoor(3, 4, false);
-variation:addDoor(3, 5, true);
-variation:addDoor(2, 6, true);
-variation:addDoor(1, 7, true);
-variation:addDoor(5, 3, false);
-variation:addDoor(6, 3, false);
-variation:addDoor(6, 4, false);
-variation:addDoor(8, 3, false);
-variation:addDoor(8, 4, false);
+--shuttle
+variation:addRoomTitle(0,0,5,2, "Shuttle");
+--shuttle door
+variation:addDoor(1,2,true);
+--airlock
+variation:addRoomTitle(0,2,2,3, "Airlock");
+--airlock interactable
+variation:addRoomSystem(0,4,1,1, "Warp");
+--airlock doors
+variation:addDoor(0,3,false);
+variation:addDoor(2,3,false);
+--corridor
+variation:addRoomTitle(2,2,6,3, "Gangway");
+--corridor interactables
+variation:addRoomSystem(2,2,1,1,"Reactor");
+variation:addRoomSystem(4,2,1,1,"Impulse");
+variation:addRoomSystem(5,1,1,1,"RearShield");
+--captain�s office
+variation:addRoomTitle(5,0,3,2, "Cpt Office");
+--captain's office interactable
+variation:addRoomSystem(7,1,1,1,"Beamweapons");
+--captain�s office door
+variation:addDoor(8,1,false);
+--toilet
+variation:addRoomTitle(4,5,4,1, "Toilet");
+--toilet interactable
+variation:addRoomSystem(7,5,1,1,"MissileSystem");
+--toilet door
+variation:addDoor(8,5,false);
+--bridge
+variation:addRoomTitle(8,0,4,6, "Bridge");
+--other Bridge
+variation:addRoomTitle(12,1,2,4, "Bridge");
+--midbridge door
+variation:addDoor(12,3,false);
+--bridge interactables
+variation:addRoomSystem(10,3,1,1,"Maneuver");
+variation:addRoomSystem(12,3,1,1,"FrontShield");
+--bridge door
+variation:addDoor(8,3,false);
  
 --Airlock doors
 --variation:addDoor(2, 2, false);
