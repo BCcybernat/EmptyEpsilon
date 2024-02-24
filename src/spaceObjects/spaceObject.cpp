@@ -13,8 +13,9 @@ REGISTER_SCRIPT_CLASS_NO_CREATE(SpaceObject)
     /// Sets this object's position on the map, in meters from the origin.
     /// Requires two numeric values.
     /// Example: obj:setPosition(x, y)
-    REGISTER_SCRIPT_CLASS_FUNCTION(MultiplayerObject, getMultiplayerId);
     REGISTER_SCRIPT_CLASS_FUNCTION(Collisionable, setPosition);
+    /// Gets this object's int32_t id.
+    REGISTER_SCRIPT_CLASS_FUNCTION(MultiplayerObject, getMultiplayerId);
     /// Gets this object's position on the map.
     /// Returns x, y as meters from the origin.
     /// Example: local x, y = obj:getPosition()
