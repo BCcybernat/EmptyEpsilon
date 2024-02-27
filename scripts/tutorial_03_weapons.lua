@@ -1,7 +1,7 @@
--- Name: Weapons
+-- Name: Operations - Weapons, Tractor Beam and Analytics Screens
 -- Description: 
 --- -------------------
---- [Operations (Weapon Stations) Info]
+--- [Info]
 --- -------------------
 --- Overview: 
 --- It is important that the Operations Officers familiarise themselves with the weapon capabilities of the ship.
@@ -37,8 +37,19 @@
 --- Be very careful when firing beams and missiles at the same time, as beams can disable your own missiles.
 ---
 --- Shields: The Weapons officer is responsible for activating the ship's shields and modulating their frequency. It might be tempting to keep the shields up at all times, but they drain significantly more power when active. Certain shield frequencies are especially resistant to certain beam frequencies, which can also be detected in targets by the Science officer. Unlike beam weapons, however, remodulating the shields' frequency brings them offline for several seconds and leaves the ship temporarily defenseless.
+---
+--- Tractor Beam:
+--- - Tractor Beam is a tool which allows you to manipulate objects around you in space. It has an adjustable arc and distance, but it is important to note that the longer your tractor beam is, the narrower it is.
+--- - Tractor Beam has tripple functionality; it can push, pull and hold in place.
+--- - Pushing is useful for protection. Use it on mines, asteroids and other hazards to ensure your safety.
+--- - Pulling allows you to retrieve your drones, shuttle as well as supply and cargo drops.
+--- - Use holding to control the battlefield. 
+
+
 -- Type: Basic
 require("utils.lua")
+require("utils_bc.lua")
+
 function init()
     --Create the player ship
     player = PlayerSpaceship():setFaction("UCN"):setTemplate("UCS Skirmish Class Frigate")
@@ -50,6 +61,8 @@ function init()
     Press "Next" to continue]], true)
     tutorial_list = {
         weaponsTutorial,
+        tractorTutorial,
+        targAnTutorial,
         endOfTutorial
     }
     tutorial:onNext(function()
@@ -198,7 +211,11 @@ You can load this missile into your weapon tube.
 Load this homing missile into the weapon tube by selecting the homing missile, and then pressing the load button for this tube. Note that it takes some time to load missiles into tubes.]],
     function() return player:getWeaponTubeLoadType(0) == "homing" end)
 addToSequence(weaponsTutorial, [[Now fire this missile by clicking on the tube.]], function() return player:getWeaponTubeLoadType(0) == nil end)
-addToSequence(weaponsTutorial, [[Missile away!]], function() return not prev_object:isValid() end)
+addToSequence(weaponsTutorial, [[Missile away!]], function()   
+    if player:getWeaponStorage("homing") < 1 then
+    player:setWeaponStorage("homing", 1)
+end
+return not prev_object:isValid() end)
 addToSequence(weaponsTutorial, function() prev_object = CpuShip():setFaction("corsair"):setTemplate("Cassard Frigate"):setPosition(2000, -2000):setRotation(0):orderIdle():setScanned(true):setHull(1):setShieldsMax(1) end)
 addToSequence(weaponsTutorial, function() tutorial:setMessageToBottomPosition() end)
 addToSequence(weaponsTutorial, [[That was just firing straight ahead, but you can also aim missiles.
@@ -214,9 +231,47 @@ end)
 addToSequence(weaponsTutorial, function() player:setWeaponStorage("homing", 0):setWeaponStorageMax("homing", 0) end)
 addToSequence(weaponsTutorial, function() tutorial:setMessageToTopPosition() end)
 addToSequence(weaponsTutorial, [[In addition to homing missiles, your ship will be equipped with HVLIs, EMPs, and Mines. Nukes and EMPs have the same features as homing missiles, but have a 1u-radius blast which is deadly. EMPs are used to disable shields, and thus are great for weakening heavily shielded enemies. HVLIs release five slugs which cannot be targeted, and need to be aimed with the help of the Helms officer]])
+addToSequence(weaponsTutorial, [[This concludes your basic weapons tutorial. Weapons stations are devided on your bridge into Missiles Station and Beam station. When operating those stations remember that communication is key to any victory.]])
+
+tractorTutorial = createSequence()
+addToSequence(tractorTutorial, function()
+    tutorial:switchViewToScreen(7)
+    tutorial:setMessageToBottomPosition()
+    resetPlayerShip()
+    player:setJumpDrive(false)
+    player:setWarpDrive(false)
+    player:setImpulseMaxSpeed(0)
+    player:setRotationMaxSpeed(0)
+end)
+addToSequence(tractorTutorial, [[This is your tractor beam view. Tractor beam is a powerful tool in skilled hands. It will allow you to pull, push and hold objects around you.]])
+addToSequence(tractorTutorial, function() prev_object = Mine():setPosition(1100, 0) end)
+addToSequence(tractorTutorial, [[This is a mine. If it gets too close to yu it will damage your ship. Set your tractor beam control to "Push" and change arc and range to your tractor beam to push the mine away from you.]], function() return distance(player, prev_object) >= 1500 end)
+addToSequence(tractorTutorial, [[Well done. Now set the Tractor Beam setting to "Off" before moving on.]])
+addToSequence(tractorTutorial, function() prev_object:destroy() end)
+addToSequence(tractorTutorial, function() prev_object = SupplyDrop():setPosition(1000, 0):setFaction("UCN") end)
+addToSequence(tractorTutorial, [[This is a supply drop. You may be able to request those, and you will be able to pick them up using your tractor beam.]])
+addToSequence(tractorTutorial, [[Select "Pull" at the top of the screen and pull it towards your ship.]], function() return not prev_object:isValid() end)
+addToSequence(tractorTutorial, function() player:commandSetTractorBeamRange(0) end, [[Very good! This concludes the overview of the Tractor Beam screen. There is one more station we would like you to look at before this tutorial is over.]])
+targAnTutorial = createSequence()
+addToSequence(targAnTutorial, function()
+    tutorial:switchViewToScreen(8)
+    tutorial:setMessageToTopPosition()
+    resetPlayerShip()
+end
+)
+addToSequence(targAnTutorial, [[This is your Target Analysis screen. You will note that it is currently empty. This is because it does not have any target link to it.
+Target Analysis is always enabled by the Science team; it is a fast and effective way for them to share informaiton with you both in and out of combat.]])
+addToSequence(targAnTutorial, function() prev_object = CpuShip():setFaction("UCN"):setTemplate("UCS King George Battleship"):setCallSign("ucs warspite"):setPosition(1000, 0):setWeaponStorage("EMP", 22) end)
+addToSequence(targAnTutorial, [[We are about to link Warspite to your Target Analysis Screen. See how much information you can learn from it, and then click "Next"]])
+addToSequence(targAnTutorial, function()
+    warspiteInfo(prev_object)
+    objId = prev_object:getMultiplayerId()
+end)
+addToSequence(targAnTutorial, function() player:commandSetAnalysisLink(objId) end)
+addToSequence(targAnTutorial, [[]])
 
 endOfTutorial = createSequence()
 addToSequence(endOfTutorial, function() tutorial:switchViewToMainScreen() end)
-addToSequence(endOfTutorial, _([[This concludes the Weapons screens tutorial, there is plenty more for you to learn on the job about your ship's Operations.
-Please don't press anything else on your screen, and let the officer taking you through the tutorial know that you have finished training.]]))
+addToSequence(endOfTutorial, _([[This concludes your Target Analysis screen tutorial. There is plenty more for you to learn on the job about your ship's Operations.
+Please let the officer taking you through the tutorial know that you have finished training.]]))
 
