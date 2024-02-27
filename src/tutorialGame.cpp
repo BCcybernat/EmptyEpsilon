@@ -16,8 +16,14 @@
 #include "screens/crew6/scienceScreen.h"
 #include "screens/crew6/relayScreen.h"
 #include "screens/crew4/tacticalScreen.h"
-#include "screens/crew4/engineeringAdvancedScreen.h"
 #include "screens/crew4/operationsScreen.h"
+// new screens for BC tutorials
+#include "screens/extra/TractorBeamScreen.h"
+#include "screens/extra/TargetAnalysisScreen.h"
+#include "screens/extra/damcon.h"
+#include "screens/extra/powerManagement.h"
+#include "screens/extra/dockMasterScreen.h"
+#include "screens/extra/droneOperatorScreen.h"
 
 #include "screenComponents/indicatorOverlays.h"
 
@@ -78,9 +84,14 @@ void TutorialGame::createScreens()
     station_screen[3] = new ScienceScreen(this);
     station_screen[4] = new RelayScreen(this, true);
     station_screen[5] = new TacticalScreen(this);
-    station_screen[6] = new EngineeringAdvancedScreen(this);
-    station_screen[7] = new OperationScreen(this);
-    for(int n=0; n<8; n++)
+    station_screen[6] = new OperationScreen(this);
+    station_screen[7] = new TractorBeamScreen(this);
+    station_screen[8] = new TargetAnalysisScreen(this);
+    station_screen[9] = new DamageControlScreen(this);
+    station_screen[10] = new PowerManagementScreen(this);
+    station_screen[11] = new DockMasterScreen(this);
+    station_screen[12] = new DroneOperatorScreen(this);
+    for(int n=0; n<13; n++)
         station_screen[n]->setSize(GuiElement::GuiSizeMax, GuiElement::GuiSizeMax)->setPosition(0, 0, ATopLeft);
 
     new GuiIndicatorOverlays(this);
@@ -216,7 +227,7 @@ void TutorialGame::switchViewToScreen(int n)
     if (viewport == nullptr)
         return;
 
-    if (n < 0 || n >= 8)
+    if (n < 0 || n >= 13)
         return;
     hideAllScreens();
     station_screen[n]->show();
@@ -268,7 +279,7 @@ void TutorialGame::hideAllScreens()
     tactical_radar->hide();
     long_range_radar->hide();
 
-    for(int n=0; n<8; n++)
+    for(int n=0; n<13; n++)
     {
         station_screen[n]->hide();
     }
