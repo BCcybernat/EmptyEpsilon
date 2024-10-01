@@ -374,6 +374,7 @@ void SpaceShip::applyTemplateValues()
 
     beams_button_station = ship_template->beams_button_station;
     shields_station = ship_template->shields_station;
+    lock_button_station = ship_template->lock_button_station;
 
     tractor_beam.setMaxArea(ship_template->tractor_beam.getMaxArea());
     tractor_beam.setDragPerSecond(ship_template->tractor_beam.getDragPerSecond());

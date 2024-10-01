@@ -367,10 +367,10 @@ template:setBeamWeapon(2, 10,  10, 2000, 3, 10)
 template:setBeamWeapon(3, 10,  -10, 2000, 3, 10)
 template:setBeamWeaponDamageType(2,2)
 template:setBeamWeaponDamageType(3,3)
-template:setBeamStation(0,2)
-template:setBeamStation(1,2)
-template:setBeamStation(2,1)
-template:setBeamStation(3,1)
+template:setBeamStation(0,1)
+template:setBeamStation(1,1)
+template:setBeamStation(2,2)
+template:setBeamStation(3,2)
 template:setTubes(5, 20.0)
 template:setWeaponStorage("HVLI", 6)
 template:setWeaponStorage("Homing", 20)
@@ -417,6 +417,9 @@ variation:weaponTubeDisallowMissle(2, "Nuke"):weaponTubeDisallowMissle(3, "Nuke"
 --                       Arc, Dir, Rotate speed
 variation:setBeamWeaponTurret(2, 360, 0, 2)
 variation:setBeamWeaponTurret(3, 360, 0, 2)
+variation:setBeamsButtonStation(1)
+variation:setLockButtonStation(2)
+variation:setShieldsStation(1)
 
 
 --shuttle

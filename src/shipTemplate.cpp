@@ -74,6 +74,8 @@ REGISTER_SCRIPT_CLASS(ShipTemplate)
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplate, setBeamsButtonStation);
     /// ditto for shields
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplate, setShieldsStation);
+    /// ditto for lock button
+    REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplate, setLockButtonStation);
 
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplate, setHasReactor);
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplate, setHasOxygenGenerator);
@@ -284,6 +286,12 @@ void ShipTemplate::setBeamsButtonStation(int station)
 void ShipTemplate::setShieldsStation(int station)
 {
     shields_station = station;
+}
+
+// cloney clone x 3
+void ShipTemplate::setLockButtonStation(int station)
+{
+    lock_button_station = station;
 }
 
 

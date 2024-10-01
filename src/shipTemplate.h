@@ -163,6 +163,7 @@ public:
     string impulse_sound_file;
     int beams_button_station;
     int shields_station;
+    int lock_button_station;
 
     std::vector<ShipRoomTemplate> rooms;
     std::vector<ShipDoorTemplate> doors;
@@ -206,6 +207,7 @@ public:
     // add beams button station
     void setBeamsButtonStation(int station);
     void setShieldsStation(int station);
+    void setLockButtonStation(int station);
     /**
      * Convenience function to set the texture of a beam by index.
      */

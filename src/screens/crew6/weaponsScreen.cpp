@@ -60,6 +60,8 @@ WeaponsScreen::WeaponsScreen(GuiContainer* owner)
 
     lock_aim = new AimLockButton(this, "LOCK_AIM", tube_controls, missile_aim, my_spaceship);
     lock_aim->setPosition(250, 20, ATopCenter)->setSize(130, 50);
+    bool lock_is_visible = PreferencesManager::get("weapons_specific_station", "0").toInt() == 0 || my_spaceship->getLockButtonStation() == PreferencesManager::get("weapons_specific_station", "0").toInt();
+    lock_aim->setVisible(lock_is_visible);
     
     if (gameGlobalInfo->all_can_be_targeted)
     {

@@ -217,6 +217,7 @@ public:
     std::set<SpaceShip*> targetedByTractorBeams;
     int beams_button_station;
     int shields_station;
+    int lock_button_station;
 
     /**
      * Frequency setting of the shields.
@@ -498,6 +499,8 @@ public:
     int getBeamsButtonStation() { return beams_button_station; }
 
     int getShieldsStation() {return shields_station; }
+
+    int getLockButtonStation() {return lock_button_station;}
 
     int getShieldsFrequency(void){ return shield_frequency; }
     void setShieldsFrequency(float freq) { if ((freq > SpaceShip::max_frequency) || (freq < 0)) return; shield_frequency = freq;}
