@@ -799,7 +799,7 @@ msgstr "Auto"
 #: src/screenComponents/missileTubeControls.cpp:121
 #: src/screenComponents/missileTubeControls.cpp:139
 msgctxt "missile"
-msgid "Load"
+msgid "Load In"
 msgstr "Laden"
 
 #: src/screenComponents/missileTubeControls.cpp:109
@@ -810,7 +810,7 @@ msgstr "Leer"
 #: src/screenComponents/missileTubeControls.cpp:114
 #: src/screenComponents/missileTubeControls.cpp:130
 msgctxt "missile"
-msgid "Unload"
+msgid "Load Out"
 msgstr "Entladen"
 
 #: src/screenComponents/missileTubeControls.cpp:126
@@ -941,7 +941,7 @@ msgstr "Warp"
 
 #: src/spaceObjects/spaceship.cpp:1429 src/spaceObjects/spaceship.cpp:1499
 msgctxt "missile"
-msgid "Homing"
+msgid "Torpedo"
 msgstr "Zielsuch"
 
 #: src/spaceObjects/spaceship.cpp:1431 src/spaceObjects/spaceship.cpp:1501
@@ -2529,7 +2529,7 @@ msgstr ""
 "Spezies und Mitgliedern der CUF."
 
 #: scripts/science_db.lua:5
-msgid "Natural"
+msgid "Celestial Bodies"
 msgstr "Natuerlich"
 
 #: scripts/science_db.lua:6
