@@ -168,6 +168,10 @@ bool PathPlanner::checkToAvoid(sf::Vector2f start, sf::Vector2f end, sf::Vector2
     {
         if (i->source)
         {
+            if (CpuShip* owner -> getOrder() == "AI_FlyTowardsBlind" && i->source->getMultiplayerClassIdentifier() == "Mine")
+            {
+                return false;
+            }
             sf::Vector2f position = i->source->getPosition();
             float f = sf::dot(startEndDiff, position - start) / startEndLength;
             if (f > 0 && f < startEndLength - i->size)

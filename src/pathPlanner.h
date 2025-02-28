@@ -28,6 +28,7 @@ public:
     friend class PathPlanner;
 };
 
+class CpuShip; // <- "Trust me bro, this will exist"
 //The path planner is used to plan a route trough the world map without hitting any objects.
 class PathPlanner : public sf::NonCopyable
 {

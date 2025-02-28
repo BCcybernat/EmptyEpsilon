@@ -49,6 +49,7 @@ void MissileVolleyAI::runAttack(P<SpaceObject> target)
         }else{
             flank_position = Right;
         }
+        flank_position = Unknown;
     }
 
     if (distance < 4500 && has_missiles)

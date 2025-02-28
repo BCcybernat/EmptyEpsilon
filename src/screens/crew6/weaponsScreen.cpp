@@ -60,8 +60,13 @@ WeaponsScreen::WeaponsScreen(GuiContainer* owner)
 
     lock_aim = new AimLockButton(this, "LOCK_AIM", tube_controls, missile_aim, my_spaceship);
     lock_aim->setPosition(250, 20, ATopCenter)->setSize(130, 50);
-    bool lock_is_visible = PreferencesManager::get("weapons_specific_station", "0").toInt() == 0 || my_spaceship->getLockButtonStation() == PreferencesManager::get("weapons_specific_station", "0").toInt();
-    lock_aim->setVisible(lock_is_visible);
+    if (PreferencesManager::get("weapons_specific_station", "0").toInt() != 0 || my_spaceship->getLockButtonStation() != PreferencesManager::get("weapons_specific_station", "0").toInt())
+    {
+        lock_aim->hide();
+    }
+    else {
+        lock_aim->show();
+    }
     
     if (gameGlobalInfo->all_can_be_targeted)
     {
@@ -103,7 +108,7 @@ WeaponsScreen::WeaponsScreen(GuiContainer* owner)
     rear_shield_display->setIcon("gui/icons/shields-aft")->setTextSize(20)->setSize(240, 40);
 
     if (PreferencesManager::get("weapons_specific_station", "0").toInt() == 0 || my_spaceship->getShieldsStation() == PreferencesManager::get("weapons_specific_station", "0").toInt())
-    
+    {
         GuiElement* shield_info_box = new GuiElement(this, "SHIELD_INFO_BOX");
         shield_info_box->setPosition(-20, -120, ABottomRight)->setSize(280, 150);
         (new GuiLabel(shield_info_box, "SHIELDS_INFO_LABEL", tr("Shield info"), 30))->addBackground()->setPosition(0, 0, ABottomRight)->setSize(GuiElement::GuiSizeMax, 50);

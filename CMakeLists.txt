@@ -290,6 +290,7 @@ set(SOURCES
 	src/spaceObjects/cpuShip.cpp
 	src/spaceObjects/asteroid.cpp
 	src/spaceObjects/mine.cpp
+	src/spaceObjects/invisibleMine.cpp
 	src/spaceObjects/blackHole.cpp
 	src/spaceObjects/playerSpaceship.cpp
 	src/spaceObjects/beamEffect.cpp
